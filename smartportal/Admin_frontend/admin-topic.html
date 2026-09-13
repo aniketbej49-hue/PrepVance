@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Topic Management - PrepVance</title>
+
+    <link rel="stylesheet"
+          href="css/admin-topic.css">
+
+</head>
+
+
+<body>
+
+
+
+    <header class="admin-navbar">
+
+        <div class="navbar-container">
+
+            <div class="logo">
+                PrepVance
+            </div>
+
+            <div class="nav-right">
+
+                <span id="adminName">
+                    Administrator
+                </span>
+
+                <button id="adminLogoutBtn">
+                    Logout
+                </button>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+
+
+    <main class="container">
+
+
+     
+
+        <section class="page-header">
+
+            <p class="admin-label">
+                ADMIN PANEL
+            </p>
+
+            <h1>
+                Topic Management
+            </h1>
+
+            <p>
+                Add, view, search, and delete
+                interview preparation topics.
+            </p>
+
+        </section>
+
+
+
+    
+
+        <section class="card">
+
+            <h2>
+                Add New Topic
+            </h2>
+
+            <p class="card-description">
+                Create a new topic for the
+                interview preparation portal.
+            </p>
+
+
+            <form id="addTopicForm">
+
+
+                <div class="form-group">
+
+                    <label for="topicName">
+                        Topic Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="topicName"
+                        placeholder="Example: Core Java"
+                        required
+                    >
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="primary-btn">
+
+                    Add Topic
+
+                </button>
+
+            </form>
+
+
+            <p id="topicMessage"></p>
+
+        </section>
+
+
+
+    
+
+        <section class="card">
+
+
+            <div class="section-header">
+
+                <div>
+
+                    <h2>
+                        All Topics
+                    </h2>
+
+                    <p class="card-description">
+                        View all topics available
+                        in the portal.
+                    </p>
+
+                </div>
+
+
+            
+
+               <div class="search-box">
+
+    <input type="text"
+           id="searchTopic"
+           placeholder="Search topics...">
+
+    <button type="button"
+            id="searchTopicBtn">
+        Search
+    </button>
+
+</div>
+
+            </div>
+
+
+
+            
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                ID
+                            </th>
+
+                            <th>
+                                Topic Name
+                            </th>
+
+
+                            <th>
+                                Action
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="topicTableBody">
+
+                       
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+
+        </section>
+
+
+    </main>
+
+
+
+  
+    <footer>
+
+        © 2026 PrepVance — Admin Panel
+
+    </footer>
+
+
+
+    <script src="js/admin-topic.js"></script>
+
+</body>
+
+</html>

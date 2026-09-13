@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>
+        Question Management - PrepVance
+    </title>
+
+    <link rel="stylesheet"
+          href="css/admin-question.css">
+
+</head>
+
+
+<body>
+
+
+    
+
+    <header class="admin-navbar">
+
+        <div class="navbar-container">
+
+            <div class="logo">
+               PrepVance
+            </div>
+
+
+            <div class="nav-right">
+
+                <span id="adminName">
+                    Administrator
+                </span>
+
+
+                <button id="adminLogoutBtn">
+                    Logout
+                </button>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+
+   
+    <main class="container">
+
+
+        
+
+        <section class="page-header">
+
+            <p class="admin-label">
+                ADMIN PANEL
+            </p>
+
+            <h1>
+                Question Management
+            </h1>
+
+            <p>
+                Create and manage technical and
+                aptitude MCQ questions.
+            </p>
+
+        </section>
+
+
+
+       
+
+        <section class="card">
+
+
+            <div class="card-header">
+
+                <div>
+
+                    <h2>
+                        Add New Question
+                    </h2>
+
+                    <p class="card-description">
+                        Create an MCQ question with
+                        options and explanation.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <form id="questionForm">
+
+
+              
+
+                <div class="form-group">
+
+                    <label for="topicId">
+                        Topic
+                    </label>
+
+                    <select id="topicId"
+                            required>
+
+                        <option value="">
+                            Select Topic
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+
+                
+
+                <div class="form-group">
+
+                    <label for="question">
+                        Question
+                    </label>
+
+                    <textarea
+                        id="question"
+                        rows="4"
+                        placeholder="Enter interview question..."
+                        required>
+                    </textarea>
+
+                </div>
+
+
+
+            
+
+                <div class="options-grid">
+
+
+                   
+
+                    <div class="form-group">
+
+                        <label for="optionA">
+                            Option A
+                        </label>
+
+                        <input
+                            type="text"
+                            id="optionA"
+                            placeholder="Enter option A"
+                            required
+                        >
+
+                    </div>
+
+
+
+             
+
+                    <div class="form-group">
+
+                        <label for="optionB">
+                            Option B
+                        </label>
+
+                        <input
+                            type="text"
+                            id="optionB"
+                            placeholder="Enter option B"
+                            required
+                        >
+
+                    </div>
+
+
+
+                    <div class="form-group">
+
+                        <label for="optionC">
+                            Option C
+                        </label>
+
+                        <input
+                            type="text"
+                            id="optionC"
+                            placeholder="Enter option C"
+                            required
+                        >
+
+                    </div>
+
+
+
+                   
+
+                    <div class="form-group">
+
+                        <label for="optionD">
+                            Option D
+                        </label>
+
+                        <input
+                            type="text"
+                            id="optionD"
+                            placeholder="Enter option D"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+
+                
+
+                <div class="form-group">
+
+                    <label for="correctOption">
+                        Correct Answer
+                    </label>
+
+                    <select id="correctOption"
+                            required>
+
+                        <option value="">
+                            Select Correct Option
+                        </option>
+
+                        <option value="A">
+                            A
+                        </option>
+
+                        <option value="B">
+                            B
+                        </option>
+
+                        <option value="C">
+                            C
+                        </option>
+
+                        <option value="D">
+                            D
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+
+              
+
+                <div class="form-group">
+
+                    <label for="explanation">
+                        Explanation
+                    </label>
+
+                    <textarea
+                        id="explanation"
+                        rows="5"
+                        placeholder="Explain why the selected answer is correct..."
+                        required>
+                    </textarea>
+
+                </div>
+
+
+
+                
+
+                <button
+                    type="submit"
+                    id="submitQuestionBtn"
+                    class="primary-btn">
+
+                    Add Question
+
+                </button>
+
+
+                <button
+                    type="button"
+                    id="cancelEditBtn"
+                    class="secondary-btn"
+                    style="display:none;">
+
+                    Cancel Edit
+
+                </button>
+
+
+                <p id="questionMessage"></p>
+
+
+            </form>
+
+        </section>
+
+
+
+
+
+        <section class="card">
+
+
+            <div class="section-header">
+
+
+                <div>
+
+                    <h2>
+                        All Questions
+                    </h2>
+
+                    <p class="card-description">
+                        View and manage all interview
+                        questions.
+                    </p>
+
+                </div>
+
+
+
+
+                <div class="search-box">
+
+                    <input
+                        type="text"
+                        id="searchQuestion"
+                        placeholder="Search questions..."
+                    >
+
+                    <button
+                        type="button"
+                        id="searchQuestionBtn">
+
+                        Search
+
+                    </button>
+
+                </div>
+
+
+            </div>
+
+
+
+        
+
+            <div id="questionList"
+                 class="question-list">
+
+
+            </div>
+
+
+        </section>
+
+
+    </main>
+
+
+
+
+    <footer>
+
+        © 2026 PrepVance — Admin Panel
+
+    </footer>
+
+
+
+
+
+    <script src="js/admin-question.js"></script>
+
+</body>
+
+</html>

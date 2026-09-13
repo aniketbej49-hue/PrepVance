@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Dashboard - PrepVance</title>
+
+    <link rel="stylesheet" href="css/Style.css">
+
+</head>
+
+<body class="dashboard-page">
+
+    <header class="navbar">
+
+        <div class="navbar-container">
+
+            <div class="logo">
+                Prep<span>Vance</span>
+            </div>
+
+            <nav class="nav-links">
+
+                <a href="dashboard.html"
+                   class="active">
+                    Dashboard
+                </a>
+
+                <a href="topics.html">
+                    Topics
+                </a>
+
+                <a href="notes.html">
+                    Notes
+                </a>
+
+                <a href="login.html"
+                   class="logout-link"
+                   id="logoutBtn">
+                    Logout
+                </a>
+
+            </nav>
+
+        </div>
+
+    </header>
+
+    <main class="dashboard-container">
+
+        <section class="dashboard-header">
+
+            <p class="dashboard-label">
+                PrepVance
+            </p>
+
+            <h1>
+                Welcome Back!
+            </h1>
+
+            <p class="dashboard-subtitle">
+                Track your interview preparation progress
+                and stay consistent with your goals.
+            </p>
+
+        </section>
+
+        <section class="dashboard-cards">
+
+            <div class="dashboard-card total-card">
+
+                <div class="card-icon">
+                    📚
+                </div>
+
+                <div>
+
+                    <h3>
+                        Total Topics
+                    </h3>
+
+                    <p id="totalTopics">
+                        0
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="dashboard-card completed-card">
+
+                <div class="card-icon">
+                    ✓
+                </div>
+
+                <div>
+
+                    <h3>
+                        Completed
+                    </h3>
+
+                    <p id="completedTopics">
+                        0
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="dashboard-card pending-card">
+
+                <div class="card-icon">
+                    !
+                </div>
+
+                <div>
+
+                    <h3>
+                        Pending
+                    </h3>
+
+                    <p id="pendingTopics">
+                        0
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="dashboard-card progress-card">
+
+                <div class="card-icon">
+                    %
+                </div>
+
+                <div>
+
+                    <h3>
+                        Progress
+                    </h3>
+
+                    <p id="progressPercentage">
+                        0%
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <section class="progress-container">
+
+            <div class="progress-header">
+
+                <div>
+
+                    <h2>
+                        Preparation Progress
+                    </h2>
+
+                    <p>
+                        Keep working toward your
+                        interview preparation goals.
+                    </p>
+
+                </div>
+
+                <span id="progressText">
+                    0%
+                </span>
+
+            </div>
+
+            <div class="progress-bar">
+
+                <div
+                    id="progressBar"
+                    class="progress-fill">
+                </div>
+
+            </div>
+
+        </section>
+
+        <section class="dashboard-lower-section">
+
+            <div class="quick-actions">
+
+                <h2>
+                    Quick Actions
+                </h2>
+
+                <p>
+                    Continue your preparation from here.
+                </p>
+
+                <div class="action-buttons">
+
+                    <a href="topics.html"
+                       class="action-button primary-action">
+
+                        <span>
+                            📚
+                        </span>
+
+                        View Topics
+
+                    </a>
+
+                    <a href="notes.html"
+                       class="action-button secondary-action">
+
+                        <span>
+                            📝
+                        </span>
+
+                        View Notes
+
+                    </a>
+
+                    <button
+                        id="openAnalyzerBtn"
+                        type="button"
+                        class="action-button secondary-action">
+
+                        <span>
+                            📄
+                        </span>
+
+                        Resume Analyzer
+
+                    </button>
+
+                </div>
+
+            </div>
+
+            <div class="preparation-summary">
+
+                <h2>
+                    Preparation Summary
+                </h2>
+
+                <p>
+                    Organize your interview preparation,
+                    complete important topics, practice
+                    questions, and improve your resume.
+                </p>
+
+                <a href="topics.html">
+                    View Preparation Topics →
+                </a>
+
+            </div>
+
+        </section>
+
+        <p id="dashboardMessage"></p>
+
+    </main>
+
+    <div
+        id="resumeAnalyzer"
+        class="resume-analyzer">
+
+        <div class="analyzer-header">
+
+            <h2>
+                Resume Analyzer
+            </h2>
+
+            <button
+                id="closeAnalyzerBtn"
+                type="button">
+
+                &times;
+
+            </button>
+
+        </div>
+
+        <div class="analyzer-content">
+
+            <h3>
+                Analyze Your Resume
+            </h3>
+
+            <p>
+                Upload your resume and get an estimated
+                ATS compatibility score.
+            </p>
+
+            <div class="resume-upload-area">
+
+                <label for="resumeFile">
+                    Choose Resume PDF
+                </label>
+
+                <input
+                    type="file"
+                    id="resumeFile"
+                    accept=".pdf,application/pdf">
+
+            </div>
+
+            <button
+                id="analyzeBtn"
+                type="button">
+
+                Analyze Resume
+
+            </button>
+
+            <div
+                id="analysisResult"
+                class="analysis-result">
+
+                <h2>
+                    ATS Score
+                </h2>
+
+                <div id="atsScore">
+                    -- / 100
+                </div>
+
+                <div class="score-details">
+
+                    <p>
+                        Keyword Match:
+                        <span id="keywordMatchScore">
+                            --
+                        </span>
+                    </p>
+
+                    <p>
+                        Skills Relevance:
+                        <span id="skillsRelevanceScore">
+                            --
+                        </span>
+                    </p>
+
+                    <p>
+                        Experience Relevance:
+                        <span id="experienceRelevanceScore">
+                            --
+                        </span>
+                    </p>
+
+                    <p>
+                        Education Relevance:
+                        <span id="educationRelevanceScore">
+                            --
+                        </span>
+                    </p>
+
+                    <p>
+                        Section Quality:
+                        <span id="sectionQualityScore">
+                            --
+                        </span>
+                    </p>
+
+                    <p>
+                        Formatting:
+                        <span id="formattingScore">
+                            --
+                        </span>
+                    </p>
+
+                    <p>
+                        Readability:
+                        <span id="readabilityScore">
+                            --
+                        </span>
+                    </p>
+
+                </div>
+
+                <div class="analysis-section">
+
+                    <h3>
+                        Experience Level
+                    </h3>
+
+                    <p id="experienceLevel">
+                        --
+                    </p>
+
+                </div>
+
+                <div class="analysis-section">
+
+                    <h3>
+                        Recommendations
+                    </h3>
+
+                    <ul id="recommendationsList">
+                    </ul>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <footer class="footer">
+
+        <div class="footer-container">
+
+            <div class="footer-column">
+
+                <h3>
+                    PrepVance
+                </h3>
+
+                <p>
+                    An interactive platform to organize,
+                    practice, and track your interview
+                    preparation.
+                </p>
+
+            </div>
+
+            <div class="footer-column">
+
+                <h4>
+                    About
+                </h4>
+
+                <a href="#">
+                    About Portal
+                </a>
+
+                <a href="#">
+                    Features
+                </a>
+
+                <a href="#">
+                    Our Purpose
+                </a>
+
+            </div>
+
+            <div class="footer-column">
+
+                <h4>
+                    Quick Links
+                </h4>
+
+                <a href="dashboard.html">
+                    Dashboard
+                </a>
+
+                <a href="topics.html">
+                    Topics
+                </a>
+
+                <a href="notes.html">
+                    Notes
+                </a>
+
+            </div>
+
+            <div class="footer-column">
+
+                <h4>
+                    Contact
+                </h4>
+
+                <a href="mailto:aniketbej852@gmail.com">
+                    Email Support
+                </a>
+
+                <a href="mailto:aniketbej852@gmail.com">
+                    Help & Support
+                </a>
+
+                <a href="mailto:aniketbej852@gmail.com">
+                    Feedback
+                </a>
+
+            </div>
+
+            <div class="footer-column">
+
+                <h4>
+                    Connect
+                </h4>
+
+                <a
+                    href="https://github.com/aniketbej49-hue"
+                    target="_blank"
+                    rel="noopener noreferrer">
+                    GitHub
+                </a>
+
+                <a
+                    href="https://www.linkedin.com/in/aniket-bej-6196b132a"
+                    target="_blank"
+                    rel="noopener noreferrer">
+                    LinkedIn
+                </a>
+
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+
+            <p>
+                © 2026 PrepVance.
+                All Rights Reserved.
+            </p>
+
+        </div>
+
+    </footer>
+
+    <script src="js/dashboard.js"></script>
+
+</body>
+
+</html>

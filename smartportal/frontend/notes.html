@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Notes - PrepVance</title>
+
+    <link rel="stylesheet"
+        href="css/notes.css">
+
+    <link rel="preconnect"
+        href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+</head>
+
+<body>
+
+    <div class="background-circle circle-one"></div>
+
+    <div class="background-circle circle-two"></div>
+
+    <nav class="navbar">
+
+        <div class="nav-left">
+
+            <div class="logo">
+
+                Prep<span>Vance</span>
+
+            </div>
+
+            <div class="nav-divider"></div>
+
+            <div class="nav-links">
+
+                <a href="dashboard.html">
+                    Dashboard
+                </a>
+
+                <a href="topics.html">
+                    Topics
+                </a>
+
+                <a href="notes.html"
+                   class="active">
+                    Notes
+                </a>
+
+            </div>
+
+        </div>
+
+        <div class="nav-right">
+
+            <div class="user-info">
+
+                <div class="user-icon">
+                    👤
+                </div>
+
+                <span id="userEmail"></span>
+
+            </div>
+
+            <button
+                id="logoutBtn"
+                class="logout-btn">
+
+                Logout
+
+            </button>
+
+        </div>
+
+    </nav>
+
+    <main class="main-container">
+
+        <section class="page-heading">
+
+            <div>
+
+                <div class="small-heading">
+                    STUDY MATERIAL
+                </div>
+
+                <h1>
+
+                    Preparation
+                    <span>Notes</span>
+
+                </h1>
+
+                <p>
+
+                    Strengthen your preparation with
+                    topic-wise study material and
+                    interview-focused notes.
+
+                </p>
+
+            </div>
+
+            <div class="notes-info">
+
+                <div class="notes-info-icon">
+                    📚
+                </div>
+
+                <div>
+
+                    <strong>
+                        Study Resources
+                    </strong>
+
+                    <span>
+                        Read & prepare
+                    </span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <div class="search-section">
+
+            <div class="search-box">
+
+                <span class="search-icon">
+                    🔍
+                </span>
+
+                <input
+                    type="text"
+                    id="searchNotes"
+                    placeholder="Search notes by title...">
+
+            </div>
+
+            <div class="note-count">
+
+                <span id="noteCount">
+                    0
+                </span>
+
+                Notes Available
+
+            </div>
+
+        </div>
+
+        <section id="notesContainer">
+
+            <div class="loading-box">
+
+                <div class="loader"></div>
+
+                <p>
+                    Loading study material...
+                </p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <footer>
+
+        <p>
+            © 2026 PrepVance · Interactive Placement Preparation Platform
+        </p>
+
+    </footer>
+
+    <script src="js/notes.js"></script>
+
+</body>
+
+</html>

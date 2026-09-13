@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Practice Questions - PrepVance</title>
+
+    <link rel="stylesheet" href="css/questions.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="background-circle circle-one"></div>
+    <div class="background-circle circle-two"></div>
+
+    <nav class="navbar">
+
+        <div class="nav-left">
+
+            <div class="logo">
+                Prep<span>Vance</span>
+            </div>
+
+            <div class="nav-divider"></div>
+
+            <div class="nav-links">
+
+                <a href="dashboard.html">Dashboard</a>
+
+                <a href="topics.html">Topics</a>
+
+                <a href="notes.html">Notes</a>
+            </div>
+
+        </div>
+
+        <div class="nav-right">
+
+            <div class="user-info">
+
+                <div class="user-icon">
+                    👤
+                </div>
+
+                <span id="userEmail"></span>
+
+            </div>
+
+            <button id="logoutBtn" class="logout-btn">
+                Logout
+            </button>
+
+        </div>
+
+    </nav>
+
+    <main class="main-container">
+
+        <div class="page-heading">
+
+            <div>
+
+                <div class="small-heading">
+                    PLACEMENT PRACTICE
+                </div>
+
+                <h1>
+                    Practice <span>Questions</span>
+                </h1>
+
+                <p>
+                    Sharpen your skills with interview-focused questions.
+                    Select the correct answer and test your knowledge.
+                </p>
+
+            </div>
+
+            <div class="topic-badge">
+
+                <div class="topic-badge-icon">
+                    ◈
+                </div>
+
+                <div>
+
+                    <strong id="topicName">
+                        Practice
+                    </strong>
+
+                    <span>
+                        Topic Practice
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="quote-box">
+
+            <div class="quote-symbol">
+                “
+            </div>
+
+            <div>
+
+                <p>
+                    Consistency today leads to opportunities tomorrow.
+                </p>
+
+                <div class="quote-line"></div>
+
+            </div>
+
+        </div>
+
+        <div id="questionContainer">
+
+            <div class="loading-box">
+
+                <div class="loader"></div>
+
+                <p>
+                    Loading questions...
+                </p>
+
+            </div>
+
+        </div>
+
+    </main>
+
+    <footer>
+
+        <p>
+            © 2026 PrepVance · Interactive Placement Preparation Platform
+        </p>
+
+    </footer>
+
+    <script src="js/questions.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,842 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+
+    min-height: 100vh;
+
+    background: #f4f7fb;
+
+    color: #1f2937;
+}
+
+
+
+
+.admin-auth-page {
+
+    min-height: 100vh;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    padding: 40px 20px;
+}
+
+
+
+
+.admin-auth-container {
+
+    width: 100%;
+
+    max-width: 440px;
+
+}
+
+
+
+
+.admin-auth-card {
+
+    background: #ffffff;
+
+    width: 100%;
+
+    padding: 40px;
+
+    border-radius: 12px;
+
+    border: 1px solid #e5e7eb;
+
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+
+
+
+.admin-auth-header {
+
+    text-align: center;
+
+    margin-bottom: 30px;
+}
+
+
+
+.admin-label {
+
+    color: #2563eb;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    letter-spacing: 1.2px;
+
+    margin-bottom: 12px;
+}
+
+
+
+
+.admin-auth-header h1 {
+
+    font-size: 28px;
+
+    font-weight: 700;
+
+    color: #111827;
+
+    margin-bottom: 10px;
+}
+
+
+
+.admin-auth-header p:last-child {
+
+    color: #6b7280;
+
+    font-size: 14px;
+
+    line-height: 1.6;
+}
+
+
+#adminRegisterForm,
+#adminLoginForm {
+
+    width: 100%;
+}
+
+
+.form-group {
+
+    margin-bottom: 20px;
+}
+
+
+
+.form-group label {
+
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: #374151;
+
+    font-size: 14px;
+
+    font-weight: 600;
+}
+
+
+
+.form-group input {
+
+    width: 100%;
+
+    height: 46px;
+
+    padding: 0 14px;
+
+    border: 1px solid #d1d5db;
+
+    border-radius: 7px;
+
+    background: #ffffff;
+
+    color: #111827;
+
+    font-size: 14px;
+
+    outline: none;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+
+
+.form-group input::placeholder {
+
+    color: #9ca3af;
+}
+
+
+
+
+.form-group input:focus {
+
+    border-color: #2563eb;
+
+    box-shadow:
+        0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+
+
+
+.admin-auth-button {
+
+    width: 100%;
+
+    height: 46px;
+
+    margin-top: 5px;
+
+    border: none;
+
+    border-radius: 7px;
+
+    background: #2563eb;
+
+    color: #ffffff;
+
+    font-size: 15px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        transform 0.1s ease;
+}
+
+
+
+.admin-auth-button:hover {
+
+    background: #1d4ed8;
+}
+
+
+
+.admin-auth-button:active {
+
+    transform: scale(0.99);
+}
+
+
+
+
+.admin-auth-message {
+
+    min-height: 22px;
+
+    margin-top: 16px;
+
+    text-align: center;
+
+    font-size: 14px;
+
+    color: #dc2626;
+}
+
+
+
+
+.admin-auth-footer {
+
+    margin-top: 25px;
+
+    padding-top: 20px;
+
+    border-top: 1px solid #e5e7eb;
+
+    text-align: center;
+}
+
+
+
+
+.admin-auth-footer p {
+
+    display: inline;
+
+    color: #6b7280;
+
+    font-size: 14px;
+}
+
+
+
+
+.admin-auth-footer a {
+
+    margin-left: 5px;
+
+    color: #2563eb;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    text-decoration: none;
+}
+
+
+
+.admin-auth-footer a:hover {
+
+    text-decoration: underline;
+}
+
+
+
+@media (max-width: 500px) {
+
+    .admin-auth-page {
+
+        padding: 25px 15px;
+    }
+
+
+    .admin-auth-card {
+
+        padding: 30px 24px;
+
+        border-radius: 10px;
+    }
+
+
+    .admin-auth-header h1 {
+
+        font-size: 24px;
+    }
+
+}
+
+/* ==========================================
+   ADMIN DASHBOARD
+   ========================================== */
+
+
+/* ==========================================
+   DASHBOARD PAGE
+   ========================================== */
+
+.admin-dashboard-page {
+
+    margin: 0;
+
+    min-height: 100vh;
+
+    background: #f4f6f9;
+
+    color: #1f2937;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+}
+
+
+/* ==========================================
+   NAVBAR
+   ========================================== */
+
+.admin-navbar {
+
+    width: 100%;
+
+    background: #1f2937;
+
+    border-bottom: 1px solid #e5e7eb;
+}
+
+
+.admin-navbar-container {
+
+    width: 100%;
+
+    max-width: none;
+
+    margin: 0;
+
+    padding: 18px 20px;
+
+    display: flex;
+   align-items: center;
+ justify-content: space-between;
+    position: relative;
+}
+/* ==========================================
+   LOGO
+   ========================================== */
+
+.admin-logo {
+
+    font-size: 24px;
+
+    font-weight: 700;
+
+    color: whitesmoke;
+
+    letter-spacing: 0.5px;
+
+}
+
+/* ==========================================
+   ADMIN NAV RIGHT
+   ========================================== */
+
+.admin-nav-right {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 18px;
+
+    margin-left: auto;
+}
+
+
+.admin-nav-right span {
+
+    font-size: 14px;
+
+    color: #ffffff;
+}
+
+
+/* ==========================================
+   LOGOUT BUTTON
+   ========================================== */
+
+.logout-btn {
+
+    border: none;
+
+    padding: 9px 18px;
+
+    border-radius: 6px;
+
+    background: #dc2626;
+
+    color: #ffffff;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease;
+}
+
+
+.logout-btn:hover {
+
+    background: #b91c1c;
+}
+
+
+/* ==========================================
+   MAIN CONTAINER
+   ========================================== */
+
+.admin-dashboard-container {
+
+    max-width: 1200px;
+
+    margin: auto;
+
+    padding: 55px 30px;
+}
+
+
+/* ==========================================
+   DASHBOARD HEADER
+   ========================================== */
+
+.admin-dashboard-header {
+
+    text-align: center;
+
+    margin-bottom: 45px;
+}
+
+
+/* ==========================================
+   ADMIN LABEL
+   ========================================== */
+
+.admin-dashboard-header .admin-label {
+
+    margin-bottom: 10px;
+
+    color: #2563eb;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    letter-spacing: 1.5px;
+}
+
+
+/* ==========================================
+   MAIN HEADING
+   ========================================== */
+
+.admin-dashboard-header h1 {
+
+    margin: 0 0 12px 0;
+
+    font-size: 34px;
+
+    font-weight: 700;
+
+    color: #111827;
+}
+
+
+/* ==========================================
+   SUBTITLE
+   ========================================== */
+
+.admin-dashboard-header p:last-child {
+
+    margin: 0;
+
+    color: #6b7280;
+
+    font-size: 16px;
+
+    line-height: 1.6;
+}
+
+
+/* ==========================================
+   MANAGEMENT GRID
+   ========================================== */
+
+.admin-management-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 25px;
+}
+
+
+/* ==========================================
+   MANAGEMENT CARD
+   ========================================== */
+
+.admin-management-card {
+
+    background: #ffffff;
+
+    padding: 30px;
+
+    border: 1px solid #e5e7eb;
+
+    border-radius: 10px;
+
+    box-shadow:
+        0 5px 15px
+        rgba(0, 0, 0, 0.05);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.admin-management-card:hover {
+
+    transform: translateY(-4px);
+
+    box-shadow:
+        0 10px 25px
+        rgba(0, 0, 0, 0.08);
+}
+
+
+/* ==========================================
+   CARD ICON
+   ========================================== */
+
+.admin-card-icon {
+
+    width: 52px;
+
+    height: 52px;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    margin-bottom: 20px;
+
+    border-radius: 8px;
+
+    background: #eff6ff;
+
+    font-size: 24px;
+}
+
+
+/* ==========================================
+   CARD HEADING
+   ========================================== */
+
+.admin-management-card h2 {
+
+    margin: 0 0 12px 0;
+
+    font-size: 20px;
+
+    color: #111827;
+}
+
+
+/* ==========================================
+   CARD DESCRIPTION
+   ========================================== */
+
+.admin-management-card p {
+
+    margin: 0;
+
+    min-height: 68px;
+
+    color: #6b7280;
+
+    font-size: 14px;
+
+    line-height: 1.6;
+}
+
+
+/* ==========================================
+   CARD BUTTON
+   ========================================== */
+
+.admin-card-button {
+
+    display: inline-block;
+
+    margin-top: 18px;
+
+    padding: 10px 16px;
+
+    border-radius: 6px;
+
+    background: #2563eb;
+
+    color: #ffffff;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    text-decoration: none;
+
+    transition:
+        background 0.2s ease;
+}
+
+
+.admin-card-button:hover {
+
+    background: #1d4ed8;
+}
+
+
+/* ==========================================
+   INFORMATION SECTION
+   ========================================== */
+
+.admin-info-section {
+
+    margin-top: 30px;
+
+    padding: 30px;
+
+    background: #ffffff;
+
+    border: 1px solid #e5e7eb;
+
+    border-radius: 10px;
+
+    box-shadow:
+        0 5px 15px
+        rgba(0, 0, 0, 0.04);
+}
+
+
+.admin-info-section h2 {
+
+    margin: 0 0 10px 0;
+
+    font-size: 21px;
+
+    color: #111827;
+}
+
+
+.admin-info-section > p {
+
+    margin: 0;
+
+    color: #6b7280;
+
+    font-size: 14px;
+
+    line-height: 1.6;
+}
+
+
+/* ==========================================
+   RESPONSIBILITY LIST
+   ========================================== */
+
+.admin-responsibility-list {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 12px;
+
+    margin-top: 22px;
+}
+
+
+.admin-responsibility-list div {
+
+    padding: 13px 15px;
+
+    background: #f8fafc;
+
+    border: 1px solid #eef2f7;
+
+    border-radius: 6px;
+
+    color: #374151;
+
+    font-size: 14px;
+}
+
+
+/* ==========================================
+   FOOTER
+   ========================================== */
+
+.admin-footer {
+
+    padding: 25px;
+
+    text-align: center;
+
+    color: #6b7280;
+
+    font-size: 13px;
+}
+
+
+/* ==========================================
+   TABLET
+   ========================================== */
+
+@media (max-width: 850px) {
+
+    .admin-management-grid {
+
+        grid-template-columns: 1fr;
+    }
+
+
+    .admin-responsibility-list {
+
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+/* ==========================================
+   MOBILE
+   ========================================== */
+
+@media (max-width: 600px) {
+
+    .admin-navbar-container {
+
+        padding: 15px 18px;
+    }
+
+
+    .admin-logo {
+
+        font-size: 14px;
+    }
+
+
+    .admin-nav-right {
+
+        gap: 10px;
+    }
+
+
+    .admin-nav-right span {
+
+        display: none;
+    }
+
+
+    .admin-dashboard-container {
+
+        padding: 35px 18px;
+    }
+
+
+    .admin-dashboard-header h1 {
+
+        font-size: 27px;
+    }
+
+
+    .admin-dashboard-header p:last-child {
+
+        font-size: 14px;
+    }
+
+
+    .admin-management-card {
+
+        padding: 25px;
+    }
+
+
+    .admin-info-section {
+
+        padding: 25px;
+    }
+
+}
