@@ -4,6 +4,9 @@ let allTopics = [];
 
 let userTopicStatuses = [];
 
+let sidebarCloseTimer = null;
+
+
 function getUserId() {
 
     const userId = localStorage.getItem("userId");
@@ -17,6 +20,7 @@ function getUserId() {
 
     return parseInt(userId);
 }
+
 
 function showMessage(message, type) {
 
@@ -33,6 +37,136 @@ function showMessage(message, type) {
         "topic-message " + type;
 }
 
+
+function openSidebar() {
+
+    const sidebar = document.getElementById("sidebar");
+
+    if (!sidebar) {
+        return;
+    }
+
+    clearTimeout(sidebarCloseTimer);
+
+    document.body.classList.remove(
+        "sidebar-collapsed"
+    );
+}
+
+
+function closeSidebar() {
+
+    const sidebar = document.getElementById("sidebar");
+
+    if (!sidebar) {
+        return;
+    }
+
+    clearTimeout(sidebarCloseTimer);
+
+    sidebarCloseTimer = setTimeout(() => {
+
+        document.body.classList.add(
+            "sidebar-collapsed"
+        );
+
+    }, 180);
+}
+
+
+function setupSidebar() {
+
+    const sidebar =
+        document.getElementById("sidebar");
+
+    const sidebarTrigger =
+        document.getElementById("sidebarTrigger");
+
+    const sidebarUserEmail =
+        document.getElementById("sidebarUserEmail");
+
+
+    if (!sidebar) {
+        return;
+    }
+
+
+    const userEmail =
+        localStorage.getItem("userEmail");
+
+
+    if (sidebarUserEmail) {
+
+        sidebarUserEmail.innerText =
+            userEmail || "User";
+    }
+
+
+    sidebar.addEventListener(
+        "mouseenter",
+        function () {
+
+            openSidebar();
+
+        }
+    );
+
+
+    sidebar.addEventListener(
+        "mouseleave",
+        function () {
+
+            closeSidebar();
+
+        }
+    );
+
+
+    if (sidebarTrigger) {
+
+        sidebarTrigger.addEventListener(
+            "mouseenter",
+            function () {
+
+                openSidebar();
+
+            }
+        );
+    }
+
+
+    document.addEventListener(
+        "mousemove",
+        function (event) {
+
+            if (event.clientX <= 18) {
+
+                openSidebar();
+
+            }
+
+        }
+    );
+
+
+    document.addEventListener(
+        "mousemove",
+        function (event) {
+
+            if (
+                event.clientX > 260 &&
+                !sidebar.matches(":hover")
+            ) {
+
+                closeSidebar();
+
+            }
+
+        }
+    );
+}
+
+
 async function loadTopics() {
 
     const userId = getUserId();
@@ -41,15 +175,18 @@ async function loadTopics() {
 
         alert("Please login again.");
 
-        window.location.href = "login.html";
+        window.location.href =
+            "login.html";
 
         return;
     }
+
 
     showMessage(
         "Loading topics...",
         "message-loading"
     );
+
 
     try {
 
@@ -58,6 +195,7 @@ async function loadTopics() {
                 "http://localhost:8080/topics/all"
             );
 
+
         if (!topicsResponse.ok) {
 
             throw new Error(
@@ -65,13 +203,16 @@ async function loadTopics() {
             );
         }
 
+
         allTopics =
             await topicsResponse.json();
+
 
         const statusResponse =
             await fetch(
                 `http://localhost:8080/user_topics/${userId}`
             );
+
 
         if (!statusResponse.ok) {
 
@@ -80,12 +221,15 @@ async function loadTopics() {
             );
         }
 
+
         userTopicStatuses =
             await statusResponse.json();
+
 
         displayTopics(allTopics);
 
         showMessage("", "");
+
 
     } catch (error) {
 
@@ -94,12 +238,14 @@ async function loadTopics() {
             error
         );
 
+
         showMessage(
             "Unable to load topics. Please make sure the backend is running.",
             "message-error"
         );
     }
 }
+
 
 function getTopicStatus(topicId) {
 
@@ -108,13 +254,16 @@ function getTopicStatus(topicId) {
             item => item.topicId === topicId
         );
 
+
     if (!statusRecord) {
 
         return "pending";
     }
 
+
     return statusRecord.status;
 }
+
 
 function displayTopics(topics) {
 
@@ -123,18 +272,22 @@ function displayTopics(topics) {
             "topicsContainer"
         );
 
+
     const topicCount =
         document.getElementById(
             "topicCount"
         );
 
+
     container.innerHTML = "";
+
 
     topicCount.innerText =
         topics.length +
         (topics.length === 1
             ? " Topic"
             : " Topics");
+
 
     if (topics.length === 0) {
 
@@ -157,20 +310,25 @@ function displayTopics(topics) {
         return;
     }
 
+
     topics.forEach(topic => {
 
         const status =
             getTopicStatus(topic.id);
 
+
         const card =
             document.createElement("div");
+
 
         card.className =
             "topic-card";
 
+
         if (status === "completed") {
 
             card.classList.add("completed");
+
 
             card.innerHTML = `
 
@@ -186,6 +344,7 @@ function displayTopics(topics) {
 
                 </div>
 
+
                 <div class="topic-actions">
 
                     <button
@@ -198,6 +357,7 @@ function displayTopics(topics) {
                         ↩ Mark as Pending
 
                     </button>
+
 
                     <button
                         class="topic-action-btn questions-btn"
@@ -230,6 +390,7 @@ function displayTopics(topics) {
 
                 </div>
 
+
                 <div class="topic-actions">
 
                     <button
@@ -242,6 +403,7 @@ function displayTopics(topics) {
                         ✓ Mark as Completed
 
                     </button>
+
 
                     <button
                         class="topic-action-btn questions-btn"
@@ -258,10 +420,12 @@ function displayTopics(topics) {
             `;
         }
 
+
         container.appendChild(card);
 
     });
 }
+
 
 async function updateTopicStatus(
     topicId,
@@ -270,14 +434,17 @@ async function updateTopicStatus(
 
     const userId = getUserId();
 
+
     if (!userId) {
 
         alert("Please login again.");
 
-        window.location.href = "login.html";
+        window.location.href =
+            "login.html";
 
         return;
     }
+
 
     const topicStatusData = {
 
@@ -289,12 +456,14 @@ async function updateTopicStatus(
 
     };
 
+
     try {
 
         showMessage(
             "Updating topic status...",
             "message-loading"
         );
+
 
         const response =
             await fetch(
@@ -312,26 +481,32 @@ async function updateTopicStatus(
                 }
             );
 
+
         const result =
             await response.text();
+
 
         if (!response.ok) {
 
             throw new Error(result);
         }
 
+
         showMessage(
             "Topic status updated successfully.",
             "message-success"
         );
 
+
         await loadTopics();
+
 
         setTimeout(() => {
 
             showMessage("", "");
 
         }, 2000);
+
 
     } catch (error) {
 
@@ -340,12 +515,14 @@ async function updateTopicStatus(
             error
         );
 
+
         showMessage(
             "Failed to update topic status.",
             "message-error"
         );
     }
 }
+
 
 function viewQuestions(topicId) {
 
@@ -354,9 +531,11 @@ function viewQuestions(topicId) {
         topicId
     );
 
+
     window.location.href =
         `questions.html?topicId=${topicId}`;
 }
+
 
 async function searchTopics() {
 
@@ -365,8 +544,10 @@ async function searchTopics() {
             "searchInput"
         );
 
+
     const keyword =
         searchInput.value.trim();
+
 
     if (keyword === "") {
 
@@ -375,6 +556,7 @@ async function searchTopics() {
         return;
     }
 
+
     try {
 
         showMessage(
@@ -382,10 +564,12 @@ async function searchTopics() {
             "message-loading"
         );
 
+
         const response =
             await fetch(
                 `http://localhost:8080/topics/search?keyword=${encodeURIComponent(keyword)}`
             );
+
 
         if (!response.ok) {
 
@@ -394,12 +578,16 @@ async function searchTopics() {
             );
         }
 
+
         const topics =
             await response.json();
 
+
         displayTopics(topics);
 
+
         showMessage("", "");
+
 
     } catch (error) {
 
@@ -408,12 +596,14 @@ async function searchTopics() {
             error
         );
 
+
         showMessage(
             "Unable to search topics.",
             "message-error"
         );
     }
 }
+
 
 function clearSearch() {
 
@@ -422,22 +612,29 @@ function clearSearch() {
             "searchInput"
         );
 
+
     searchInput.value = "";
+
 
     displayTopics(allTopics);
 
+
     showMessage("", "");
 }
+
 
 function escapeHTML(value) {
 
     const div =
         document.createElement("div");
 
+
     div.textContent = value;
+
 
     return div.innerHTML;
 }
+
 
 function logoutUser() {
 
@@ -445,9 +642,11 @@ function logoutUser() {
 
     localStorage.removeItem("userEmail");
 
+
     window.location.href =
         "login.html";
 }
+
 
 document.addEventListener(
     "DOMContentLoaded",
@@ -457,8 +656,10 @@ document.addEventListener(
             "Topics page loaded."
         );
 
+
         const userId =
             localStorage.getItem("userId");
+
 
         if (!userId) {
 
@@ -466,13 +667,20 @@ document.addEventListener(
                 "Please login to access topics."
             );
 
+
             window.location.href =
                 "login.html";
+
 
             return;
         }
 
+
+        setupSidebar();
+
+
         loadTopics();
+
 
         document
             .getElementById("searchBtn")
@@ -481,12 +689,14 @@ document.addEventListener(
                 searchTopics
             );
 
+
         document
             .getElementById("clearSearchBtn")
             .addEventListener(
                 "click",
                 clearSearch
             );
+
 
         document
             .getElementById("searchInput")
@@ -501,6 +711,7 @@ document.addEventListener(
 
                 }
             );
+
 
         document
             .getElementById("logoutBtn")

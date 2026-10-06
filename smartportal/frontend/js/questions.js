@@ -1,3 +1,80 @@
+const sidebar =
+    document.getElementById("sidebar");
+
+const sidebarTrigger =
+    document.getElementById("sidebarTrigger");
+
+function openSidebar() {
+
+    document.body.classList.remove(
+        "sidebar-collapsed"
+    );
+
+}
+
+function closeSidebar() {
+
+    document.body.classList.add(
+        "sidebar-collapsed"
+    );
+
+}
+
+if (sidebarTrigger) {
+
+    sidebarTrigger.addEventListener(
+        "mouseenter",
+        function () {
+
+            openSidebar();
+
+        }
+    );
+
+}
+
+if (sidebar) {
+
+    sidebar.addEventListener(
+        "mouseenter",
+        function () {
+
+            openSidebar();
+
+        }
+    );
+
+    sidebar.addEventListener(
+        "mouseleave",
+        function () {
+
+            setTimeout(
+                function () {
+
+                    closeSidebar();
+
+                },
+                180
+            );
+
+        }
+    );
+
+}
+
+document.addEventListener(
+    "mousemove",
+    function (event) {
+
+        if (event.clientX <= 18) {
+
+            openSidebar();
+
+        }
+
+    }
+);
+
 const userId =
     localStorage.getItem("userId");
 
@@ -11,27 +88,57 @@ if (!userId) {
 
 }
 
-document.getElementById("userEmail").textContent =
-    userEmail || "";
+const sidebarUserEmail =
+    document.getElementById(
+        "sidebarUserEmail"
+    );
 
-document.getElementById("logoutBtn")
-    .addEventListener("click", function () {
+if (sidebarUserEmail) {
 
-        localStorage.removeItem("userId");
-        localStorage.removeItem("userEmail");
+    sidebarUserEmail.textContent =
+        userEmail || "User";
 
-        window.location.href = "login.html";
+}
 
-    });
+const logoutBtn =
+    document.getElementById(
+        "logoutBtn"
+    );
+
+if (logoutBtn) {
+
+    logoutBtn.addEventListener(
+        "click",
+        function () {
+
+            localStorage.removeItem(
+                "userId"
+            );
+
+            localStorage.removeItem(
+                "userEmail"
+            );
+
+            window.location.href =
+                "login.html";
+
+        }
+    );
+
+}
 
 const urlParams =
-    new URLSearchParams(window.location.search);
+    new URLSearchParams(
+        window.location.search
+    );
 
 const topicId =
     urlParams.get("topicId");
 
 const questionContainer =
-    document.getElementById("questionContainer");
+    document.getElementById(
+        "questionContainer"
+    );
 
 if (!topicId) {
 
@@ -92,7 +199,9 @@ function loadQuestions() {
             return;
         }
 
-        displayQuestions(questions);
+        displayQuestions(
+            questions
+        );
 
     })
 
@@ -119,122 +228,147 @@ function loadQuestions() {
 
 }
 
-function displayQuestions(questions) {
+function displayQuestions(
+    questions
+) {
 
     questionContainer.innerHTML = "";
 
-    questions.forEach((questionData, index) => {
+    questions.forEach(
+        (questionData, index) => {
 
-        const questionCard =
-            document.createElement("div");
+            const questionCard =
+                document.createElement(
+                    "div"
+                );
 
-        questionCard.className =
-            "question-card";
+            questionCard.className =
+                "question-card";
 
-        questionCard.innerHTML = `
+            questionCard.innerHTML = `
 
-            <div class="question-header">
+                <div class="question-header">
 
-                <div class="question-number">
-                    QUESTION ${index + 1} OF ${questions.length}
+                    <div class="question-number">
+
+                        QUESTION
+                        ${index + 1}
+                        OF
+                        ${questions.length}
+
+                    </div>
+
+                    <div class="question-tag">
+
+                        Practice
+
+                    </div>
+
                 </div>
 
-                <div class="question-tag">
-                    Practice
+                <div class="question-text">
+
+                    ${questionData.question}
+
                 </div>
 
-            </div>
+                <div class="options">
 
-            <div class="question-text">
-                ${questionData.question}
-            </div>
+                    <label class="option">
 
-            <div class="options">
+                        <input
+                            type="radio"
+                            name="question-${questionData.id}"
+                            value="A">
 
-                <label class="option">
+                        <span>
 
-                    <input
-                        type="radio"
-                        name="question-${questionData.id}"
-                        value="A">
+                            <strong>A.</strong>
+                            ${questionData.optionA}
 
-                    <span>
-                        <strong>A.</strong>
-                        ${questionData.optionA}
-                    </span>
+                        </span>
 
-                </label>
+                    </label>
 
-                <label class="option">
+                    <label class="option">
 
-                    <input
-                        type="radio"
-                        name="question-${questionData.id}"
-                        value="B">
+                        <input
+                            type="radio"
+                            name="question-${questionData.id}"
+                            value="B">
 
-                    <span>
-                        <strong>B.</strong>
-                        ${questionData.optionB}
-                    </span>
+                        <span>
 
-                </label>
+                            <strong>B.</strong>
+                            ${questionData.optionB}
 
-                <label class="option">
+                        </span>
 
-                    <input
-                        type="radio"
-                        name="question-${questionData.id}"
-                        value="C">
+                    </label>
 
-                    <span>
-                        <strong>C.</strong>
-                        ${questionData.optionC}
-                    </span>
+                    <label class="option">
 
-                </label>
+                        <input
+                            type="radio"
+                            name="question-${questionData.id}"
+                            value="C">
 
-                <label class="option">
+                        <span>
 
-                    <input
-                        type="radio"
-                        name="question-${questionData.id}"
-                        value="D">
+                            <strong>C.</strong>
+                            ${questionData.optionC}
 
-                    <span>
-                        <strong>D.</strong>
-                        ${questionData.optionD}
-                    </span>
+                        </span>
 
-                </label>
+                    </label>
 
-            </div>
+                    <label class="option">
 
-            <button
-                class="submit-btn"
-                onclick="submitAnswer(${questionData.id})">
+                        <input
+                            type="radio"
+                            name="question-${questionData.id}"
+                            value="D">
 
-                Submit Answer →
+                        <span>
 
-            </button>
+                            <strong>D.</strong>
+                            ${questionData.optionD}
 
-            <div
-                id="result-${questionData.id}"
-                class="answer-result"
-                style="display: none;">
+                        </span>
 
-            </div>
+                    </label>
 
-        `;
+                </div>
 
-        questionContainer.appendChild(
-            questionCard
-        );
+                <button
+                    class="submit-btn"
+                    onclick="submitAnswer(${questionData.id})">
 
-    });
+                    Submit Answer 
+
+                </button>
+
+                <div
+                    id="result-${questionData.id}"
+                    class="answer-result"
+                    style="display: none;">
+
+                </div>
+
+            `;
+
+            questionContainer.appendChild(
+                questionCard
+            );
+
+        }
+    );
 
 }
 
-function submitAnswer(questionId) {
+function submitAnswer(
+    questionId
+) {
 
     const selectedOption =
         document.querySelector(
@@ -274,7 +408,9 @@ function submitAnswer(questionId) {
             },
 
             body:
-                JSON.stringify(answerData)
+                JSON.stringify(
+                    answerData
+                )
 
         }
 
@@ -370,8 +506,11 @@ function displayAnswerResult(
             <div class="correct-answer">
 
                 Correct Answer:
+
                 <strong>
+
                     ${result.correctOption}
+
                 </strong>
 
             </div>

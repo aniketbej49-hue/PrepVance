@@ -26,66 +26,116 @@
 
 </head>
 
-<body>
+<body class="notes-page">
 
     <div class="background-circle circle-one"></div>
 
     <div class="background-circle circle-two"></div>
 
-    <nav class="navbar">
 
-        <div class="nav-left">
+    <aside class="sidebar" id="sidebar">
 
-            <div class="logo">
+        <div class="sidebar-top">
 
-                Prep<span>Vance</span>
+            <div class="sidebar-brand">
+
+                <div class="sidebar-logo">
+                    Prep<span>Vance</span>
+                </div>
+
+                <p>
+                    Prepare Today<br>
+                    Build Tomorrow
+                </p>
 
             </div>
 
-            <div class="nav-divider"></div>
+            <div class="sidebar-divider"></div>
 
-            <div class="nav-links">
+            <nav class="sidebar-nav">
 
-                <a href="dashboard.html">
-                    Dashboard
+                <a href="dashboard.html"
+                   class="sidebar-link">
+
+                    <span class="sidebar-icon">
+                        ⌂
+                    </span>
+
+                    <span class="sidebar-text">
+                        Dashboard
+                    </span>
+
                 </a>
 
-                <a href="topics.html">
-                    Topics
+                <a href="topics.html"
+                   class="sidebar-link">
+
+                    <span class="sidebar-icon">
+                        ▣
+                    </span>
+
+                    <span class="sidebar-text">
+                        Topics
+                    </span>
+
                 </a>
 
                 <a href="notes.html"
-                   class="active">
-                    Notes
+                   class="sidebar-link active">
+
+                    <span class="sidebar-icon">
+                        ▤
+                    </span>
+
+                    <span class="sidebar-text">
+                        Notes
+                    </span>
+
                 </a>
 
-            </div>
+            </nav>
 
         </div>
 
-        <div class="nav-right">
 
-            <div class="user-info">
+        <div class="sidebar-bottom">
+
+            <div class="sidebar-user">
 
                 <div class="user-icon">
-                    👤
+                   👤
                 </div>
 
-                <span id="userEmail"></span>
+                <span id="sidebarUserEmail">
+                    User
+                </span>
 
             </div>
 
-            <button
-                id="logoutBtn"
-                class="logout-btn">
+            <div class="sidebar-divider bottom-divider"></div>
 
-                Logout
+            <a href="login.html"
+               class="sidebar-logout"
+               id="logoutBtn">
 
-            </button>
+                <span>
+                    Logout
+                </span>
+
+            </a>
 
         </div>
 
-    </nav>
+
+        <div class="sidebar-wave"></div>
+
+    </aside>
+
+
+    <div class="sidebar-trigger"
+         id="sidebarTrigger">
+    </div>
+
 
     <main class="main-container">
 
@@ -98,21 +148,18 @@
                 </div>
 
                 <h1>
-
                     Preparation
                     <span>Notes</span>
-
                 </h1>
 
                 <p>
-
                     Strengthen your preparation with
                     topic-wise study material and
                     interview-focused notes.
-
                 </p>
 
             </div>
+
 
             <div class="notes-info">
 
@@ -136,6 +183,7 @@
 
         </section>
 
+
         <div class="search-section">
 
             <div class="search-box">
@@ -151,6 +199,7 @@
 
             </div>
 
+
             <div class="note-count">
 
                 <span id="noteCount">
@@ -162,6 +211,7 @@
             </div>
 
         </div>
+
 
         <section id="notesContainer">
 
@@ -179,6 +229,7 @@
 
     </main>
 
+
     <footer>
 
         <p>
@@ -186,6 +237,7 @@
         </p>
 
     </footer>
+
 
     <script src="js/notes.js"></script>
 

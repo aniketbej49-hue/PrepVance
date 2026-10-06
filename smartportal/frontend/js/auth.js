@@ -32,8 +32,16 @@ if (registerForm) {
         .then(response => response.text())
 
         .then(data => {
-            
-            document.querySelector("#message").innerText = data;
+
+            if (data === "User Registered Successfully") {
+
+                window.location.href = "login.html";
+
+            } else {
+
+                document.querySelector("#message").innerText = data;
+
+            }
 
         })
 
@@ -41,13 +49,14 @@ if (registerForm) {
 
             console.log(error);
 
+            document.querySelector("#message").innerText =
+                "Registration failed. Please try again.";
+
         });
 
     });
 
 }
-
-
 const loginForm =
     document.querySelector("#loginForm");
 

@@ -16,40 +16,103 @@
 
 <body class="dashboard-page">
 
-    <header class="navbar">
+    <aside class="sidebar" id="sidebar">
 
-        <div class="navbar-container">
+        <div class="sidebar-top">
 
-            <div class="logo">
-                Prep<span>Vance</span>
+            <div class="sidebar-brand">
+
+                <div class="sidebar-logo">
+                    Prep<span>Vance</span>
+                </div>
+
+                <p>
+                    Prepare Today<br>
+                    Build Tomorrow
+                </p>
+
             </div>
 
-            <nav class="nav-links">
+            <div class="sidebar-divider"></div>
+
+            <nav class="sidebar-nav">
 
                 <a href="dashboard.html"
-                   class="active">
-                    Dashboard
+                   class="sidebar-link active">
+
+                    <span class="sidebar-icon">⌂</span>
+
+                    <span class="sidebar-text">
+                        Dashboard
+                    </span>
+
                 </a>
 
-                <a href="topics.html">
-                    Topics
+                <a href="topics.html"
+                   class="sidebar-link">
+
+                    <span class="sidebar-icon">▣</span>
+
+                    <span class="sidebar-text">
+                        Topics
+                    </span>
+
                 </a>
 
-                <a href="notes.html">
-                    Notes
-                </a>
+                <a href="notes.html"
+                   class="sidebar-link">
 
-                <a href="login.html"
-                   class="logout-link"
-                   id="logoutBtn">
-                    Logout
+                    <span class="sidebar-icon">▤</span>
+
+                    <span class="sidebar-text">
+                        Notes
+                    </span>
+
                 </a>
 
             </nav>
 
         </div>
 
-    </header>
+        <div class="sidebar-bottom">
+
+            <div class="sidebar-user">
+
+                <div class="user-icon">
+                    👤
+                </div>
+
+                <span id="sidebarUserEmail">
+                    User
+                </span>
+
+            </div>
+
+            <div class="sidebar-divider bottom-divider"></div>
+
+            <a href="login.html"
+               class="sidebar-logout"
+               id="logoutBtn">
+
+                <span class="logout-icon">
+                    
+                </span>
+
+                <span>
+                    Logout
+                </span>
+
+            </a>
+
+        </div>
+
+        <div class="sidebar-wave"></div>
+
+    </aside>
+
+    <div class="sidebar-trigger"
+         id="sidebarTrigger">
+    </div>
 
     <main class="dashboard-container">
 
@@ -179,9 +242,8 @@
 
             <div class="progress-bar">
 
-                <div
-                    id="progressBar"
-                    class="progress-fill">
+                <div id="progressBar"
+                     class="progress-fill">
                 </div>
 
             </div>
@@ -224,10 +286,9 @@
 
                     </a>
 
-                    <button
-                        id="openAnalyzerBtn"
-                        type="button"
-                        class="action-button secondary-action">
+                    <button id="openAnalyzerBtn"
+                            type="button"
+                            class="action-button secondary-action">
 
                         <span>
                             📄
@@ -265,9 +326,8 @@
 
     </main>
 
-    <div
-        id="resumeAnalyzer"
-        class="resume-analyzer">
+    <div id="resumeAnalyzer"
+         class="resume-analyzer">
 
         <div class="analyzer-header">
 
@@ -275,9 +335,8 @@
                 Resume Analyzer
             </h2>
 
-            <button
-                id="closeAnalyzerBtn"
-                type="button">
+            <button id="closeAnalyzerBtn"
+                    type="button">
 
                 &times;
 
@@ -302,24 +361,21 @@
                     Choose Resume PDF
                 </label>
 
-                <input
-                    type="file"
-                    id="resumeFile"
-                    accept=".pdf,application/pdf">
+                <input type="file"
+                       id="resumeFile"
+                       accept=".pdf,application/pdf">
 
             </div>
 
-            <button
-                id="analyzeBtn"
-                type="button">
+            <button id="analyzeBtn"
+                    type="button">
 
                 Analyze Resume
 
             </button>
 
-            <div
-                id="analysisResult"
-                class="analysis-result">
+            <div id="analysisResult"
+                 class="analysis-result">
 
                 <h2>
                     ATS Score
@@ -495,18 +551,20 @@
                     Connect
                 </h4>
 
-                <a
-                    href="https://github.com/aniketbej49-hue"
-                    target="_blank"
-                    rel="noopener noreferrer">
+                <a href="https://github.com/aniketbej49-hue"
+                   target="_blank"
+                   rel="noopener noreferrer">
+
                     GitHub
+
                 </a>
 
-                <a
-                    href="https://www.linkedin.com/in/aniket-bej-6196b132a"
-                    target="_blank"
-                    rel="noopener noreferrer">
+                <a href="https://www.linkedin.com/in/aniket-bej-6196b132a"
+                   target="_blank"
+                   rel="noopener noreferrer">
+
                     LinkedIn
+
                 </a>
 
             </div>

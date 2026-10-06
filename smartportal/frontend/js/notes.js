@@ -1,8 +1,94 @@
+const sidebar =
+    document.getElementById("sidebar");
+
+const sidebarTrigger =
+    document.getElementById("sidebarTrigger");
+
+
+function openSidebar() {
+
+    document.body.classList.remove(
+        "sidebar-collapsed"
+    );
+
+}
+
+
+function closeSidebar() {
+
+    document.body.classList.add(
+        "sidebar-collapsed"
+    );
+
+}
+
+
+if (sidebarTrigger) {
+
+    sidebarTrigger.addEventListener(
+        "mouseenter",
+        function () {
+
+            openSidebar();
+
+        }
+    );
+
+}
+
+
+if (sidebar) {
+
+    sidebar.addEventListener(
+        "mouseenter",
+        function () {
+
+            openSidebar();
+
+        }
+    );
+
+
+    sidebar.addEventListener(
+        "mouseleave",
+        function () {
+
+            setTimeout(
+                function () {
+
+                    closeSidebar();
+
+                },
+                180
+            );
+
+        }
+    );
+
+}
+
+
+document.addEventListener(
+    "mousemove",
+    function (event) {
+
+        if (event.clientX <= 18) {
+
+            openSidebar();
+
+        }
+
+    }
+);
+
+
 const userId =
     localStorage.getItem("userId");
 
+
 const userEmail =
     localStorage.getItem("userEmail");
+
 
 if (!userId) {
 
@@ -11,37 +97,70 @@ if (!userId) {
 
 }
 
-document.getElementById("userEmail")
-    .textContent = userEmail || "";
 
-document.getElementById("logoutBtn")
-    .addEventListener("click", function () {
+const sidebarUserEmail =
+    document.getElementById(
+        "sidebarUserEmail"
+    );
 
-        localStorage.removeItem("userId");
 
-        localStorage.removeItem("userEmail");
+if (sidebarUserEmail) {
 
-        window.location.href =
-            "login.html";
+    sidebarUserEmail.textContent =
+        userEmail || "User";
 
-    });
+}
+
+
+const logoutBtn =
+    document.getElementById(
+        "logoutBtn"
+    );
+
+
+if (logoutBtn) {
+
+    logoutBtn.addEventListener(
+        "click",
+        function () {
+
+            localStorage.removeItem(
+                "userId"
+            );
+
+            localStorage.removeItem(
+                "userEmail"
+            );
+
+            window.location.href =
+                "login.html";
+
+        }
+    );
+
+}
+
 
 const notesContainer =
     document.getElementById(
         "notesContainer"
     );
 
+
 const searchNotes =
     document.getElementById(
         "searchNotes"
     );
+
 
 const noteCount =
     document.getElementById(
         "noteCount"
     );
 
+
 let allNotes = [];
+
 
 function loadNotes() {
 
@@ -102,12 +221,14 @@ function loadNotes() {
 
 }
 
+
 function displayNotes(notes) {
 
     notesContainer.innerHTML = "";
 
     noteCount.textContent =
         notes.length;
+
 
     if (notes.length === 0) {
 
@@ -136,6 +257,7 @@ function displayNotes(notes) {
 
     }
 
+
     notes.forEach(note => {
 
         const noteCard =
@@ -143,8 +265,10 @@ function displayNotes(notes) {
                 "div"
             );
 
+
         noteCard.className =
             "note-card";
+
 
         noteCard.innerHTML = `
 
@@ -178,11 +302,12 @@ function displayNotes(notes) {
                 class="read-btn"
                 onclick="readNote('${note.filePath}')">
 
-                Read PDF →
+                Read PDF 
 
             </button>
 
         `;
+
 
         notesContainer.appendChild(
             noteCard
@@ -192,10 +317,12 @@ function displayNotes(notes) {
 
 }
 
+
 function readNote(filePath) {
 
     const pdfUrl =
         `http://localhost:8080${filePath}`;
+
 
     window.open(
         pdfUrl,
@@ -203,6 +330,7 @@ function readNote(filePath) {
     );
 
 }
+
 
 searchNotes.addEventListener(
     "input",
@@ -213,6 +341,7 @@ searchNotes.addEventListener(
                 .trim()
                 .toLowerCase();
 
+
         if (!keyword) {
 
             displayNotes(allNotes);
@@ -220,6 +349,7 @@ searchNotes.addEventListener(
             return;
 
         }
+
 
         const filteredNotes =
             allNotes.filter(note => {
@@ -230,11 +360,13 @@ searchNotes.addEventListener(
 
             });
 
+
         displayNotes(
             filteredNotes
         );
 
     }
 );
+
 
 loadNotes();

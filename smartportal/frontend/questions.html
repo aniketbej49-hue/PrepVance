@@ -11,58 +11,129 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
         rel="stylesheet">
 </head>
 
-<body>
+<body class="questions-page">
 
+    
     <div class="background-circle circle-one"></div>
     <div class="background-circle circle-two"></div>
 
-    <nav class="navbar">
 
-        <div class="nav-left">
 
-            <div class="logo">
-                Prep<span>Vance</span>
+    <aside class="sidebar" id="sidebar">
+
+        <div class="sidebar-top">
+
+            <div class="sidebar-brand">
+
+                <div class="sidebar-logo">
+                    Prep<span>Vance</span>
+                </div>
+
+                <p>
+                    Prepare Today<br>
+                    Build Tomorrow
+                </p>
+
             </div>
 
-            <div class="nav-divider"></div>
 
-            <div class="nav-links">
+            <div class="sidebar-divider"></div>
 
-                <a href="dashboard.html">Dashboard</a>
 
-                <a href="topics.html">Topics</a>
+            <nav class="sidebar-nav">
 
-                <a href="notes.html">Notes</a>
-            </div>
+                <a href="dashboard.html" class="sidebar-link">
+
+                    <span class="sidebar-icon">⌂</span>
+
+                    <span class="sidebar-text">
+                        Dashboard
+                    </span>
+
+                </a>
+
+
+                <a href="topics.html" class="sidebar-link active">
+
+                    <span class="sidebar-icon">▣</span>
+
+                    <span class="sidebar-text">
+                        Topics
+                    </span>
+
+                </a>
+
+
+                <a href="notes.html" class="sidebar-link">
+
+                    <span class="sidebar-icon">▤</span>
+
+                    <span class="sidebar-text">
+                        Notes
+                    </span>
+
+                </a>
+
+            </nav>
 
         </div>
 
-        <div class="nav-right">
 
-            <div class="user-info">
+        <div class="sidebar-bottom">
+
+            <div class="sidebar-user">
 
                 <div class="user-icon">
                     👤
                 </div>
 
-                <span id="userEmail"></span>
+                <span id="sidebarUserEmail">
+                    User
+                </span>
 
             </div>
 
-            <button id="logoutBtn" class="logout-btn">
-                Logout
-            </button>
+
+            <div class="sidebar-divider bottom-divider"></div>
+
+
+            <a href="login.html"
+               class="sidebar-logout"
+               id="logoutBtn">
+
+                <span class="logout-icon">
+                    
+                </span>
+
+                <span>
+                    Logout
+                </span>
+
+            </a>
 
         </div>
 
-    </nav>
+
+        
+        <div class="sidebar-wave"></div>
+
+    </aside>
+
+
+    <div class="sidebar-trigger" id="sidebarTrigger"></div>
+
+
+    
 
     <main class="main-container">
+
+
 
         <div class="page-heading">
 
@@ -82,6 +153,7 @@
                 </p>
 
             </div>
+
 
             <div class="topic-badge">
 
@@ -105,6 +177,9 @@
 
         </div>
 
+
+    
+
         <div class="quote-box">
 
             <div class="quote-symbol">
@@ -123,6 +198,9 @@
 
         </div>
 
+
+       
+
         <div id="questionContainer">
 
             <div class="loading-box">
@@ -139,6 +217,9 @@
 
     </main>
 
+
+    
+
     <footer>
 
         <p>
@@ -146,6 +227,7 @@
         </p>
 
     </footer>
+
 
     <script src="js/questions.js"></script>
 

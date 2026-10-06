@@ -25,11 +25,14 @@
 
 </head>
 
-<body>
+
+<body class="login-page">
+
 
     <div class="background-circle circle-one"></div>
 
     <div class="background-circle circle-two"></div>
+
 
     <div class="dots dots-right">
 
@@ -47,73 +50,130 @@
 
     </div>
 
-    <div class="login-container">
 
-        <h1 class="logo">
-            Prep<span>Vance</span>
-        </h1>
+    <main class="login-layout">
 
-        <div class="subtitle">
-            Interactive Placement Preparation Platform
-        </div>
 
-        <h2>
-            Welcome Back
-        </h2>
+        <section class="login-hero">
 
-        <p class="welcome-text">
-            Login to continue your placement preparation journey.
-        </p>
+            <img
+                src="images/prepvance-login-hero.png"
+                alt="PrepVance placement preparation"
+                class="hero-image">
 
-        <form id="loginForm">
+        </section>
 
-            <label for="loginEmail">
-                Email
-            </label>
 
-            <input
-                type="email"
-                id="loginEmail"
-                placeholder="Enter your email address"
-                required>
+        <section class="login-form-section">
 
-            <label for="loginPassword">
-                Password
-            </label>
 
-            <input
-                type="password"
-                id="loginPassword"
-                placeholder="Enter your password"
-                required>
+            <div class="login-container">
 
-            <button type="submit">
-                Login →
-            </button>
 
-        </form>
+                <h1 class="logo">
 
-        <p id="loginMessage"></p>
+                    Prep<span>Vance</span>
 
-        <p class="forgot-link">
+                </h1>
 
-            <a href="forgot-password.html">
-                Forgot Password?
-            </a>
 
-        </p>
+                <div class="subtitle">
 
-        <p class="register-link">
+                    Interactive Placement Preparation Platform
 
-            Don't have an account?
+                </div>
 
-            <a href="register.html">
-                Register
-            </a>
 
-        </p>
+                <h2>
 
-    </div>
+                    Welcome Back
+
+                </h2>
+
+
+                <p class="welcome-text">
+
+                    Login to continue your placement preparation journey.
+
+                </p>
+
+
+                <form id="loginForm">
+
+
+                    <label for="loginEmail">
+
+                        Email
+
+                    </label>
+
+
+                    <input
+                        type="email"
+                        id="loginEmail"
+                        placeholder="Enter your email address"
+                        required>
+
+
+                    <label for="loginPassword">
+
+                        Password
+
+                    </label>
+
+
+                    <input
+                        type="password"
+                        id="loginPassword"
+                        placeholder="Enter your password"
+                        required>
+
+
+                    <button type="submit">
+
+                        Login
+
+                    </button>
+
+
+                </form>
+
+
+                <p id="loginMessage"></p>
+
+
+                <p class="forgot-link">
+
+                    <a href="forgot-password.html">
+
+                        Forgot Password?
+
+                    </a>
+
+                </p>
+
+
+                <p class="register-link">
+
+                    Don't have an account?
+
+                    <a href="register.html">
+
+                        Register
+
+                    </a>
+
+                </p>
+
+
+            </div>
+
+
+        </section>
+
+
+    </main>
+
 
     <script src="js/auth.js"></script>
 

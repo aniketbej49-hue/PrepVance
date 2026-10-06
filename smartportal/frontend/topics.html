@@ -12,37 +12,99 @@
 
 <body class="topics-page">
 
-    <nav class="navbar">
+    <aside class="sidebar" id="sidebar">
 
-        <div class="nav-container">
+        <div class="sidebar-top">
 
-            <div class="logo">
-    Prep<span>Vance</span>
-</div>
+            <div class="sidebar-brand">
 
-            <div class="nav-links">
+                <div class="sidebar-logo">
+                    Prep<span>Vance</span>
+                </div>
 
-                <a href="dashboard.html">
-                    Dashboard
-                </a>
-
-                <a href="topics.html" class="active">
-                    Topics
-                </a>
-
-                <a href="notes.html">
-                    Notes
-                </a>
-
-                <button id="logoutBtn" class="logout-btn">
-                    Logout
-                </button>
+                <p>
+                    Prepare Today<br>
+                    Build Tomorrow
+                </p>
 
             </div>
 
+            <div class="sidebar-divider"></div>
+
+            <nav class="sidebar-nav">
+
+                <a href="dashboard.html" class="sidebar-link">
+
+                    <span class="sidebar-icon">
+                        ⌂
+                    </span>
+
+                    <span class="sidebar-text">
+                        Dashboard
+                    </span>
+
+                </a>
+
+                <a href="topics.html" class="sidebar-link active">
+
+                    <span class="sidebar-icon">
+                        ▣
+                    </span>
+
+                    <span class="sidebar-text">
+                        Topics
+                    </span>
+
+                </a>
+
+                <a href="notes.html" class="sidebar-link">
+
+                    <span class="sidebar-icon">
+                        ▤
+                    </span>
+
+                    <span class="sidebar-text">
+                        Notes
+                    </span>
+
+                </a>
+
+            </nav>
+
         </div>
 
-    </nav>
+        <div class="sidebar-bottom">
+
+            <div class="sidebar-user">
+
+                <div class="user-icon">
+                      👤
+                </div>
+
+                <span id="sidebarUserEmail">
+                    User
+                </span>
+
+            </div>
+
+            <div class="sidebar-divider bottom-divider"></div>
+
+            <a href="login.html" class="sidebar-logout" id="logoutBtn">
+
+                <span>
+                    Logout
+                </span>
+
+            </a>
+
+        </div>
+
+        <div class="sidebar-wave"></div>
+
+    </aside>
+
+    <div class="sidebar-trigger" id="sidebarTrigger"></div>
+
 
     <main class="topics-main">
 
@@ -61,6 +123,7 @@
             </p>
 
         </section>
+
 
         <section class="search-section">
 
@@ -84,13 +147,16 @@
 
         </section>
 
+
         <p id="topicMessage" class="topic-message"></p>
+
 
         <section class="topics-section">
 
             <div class="topics-section-header">
 
                 <div>
+
                     <h2>
                         Available Topics
                     </h2>
@@ -98,6 +164,7 @@
                     <p>
                         Choose a topic to practice questions or track your preparation.
                     </p>
+
                 </div>
 
                 <span id="topicCount" class="topic-count">
@@ -105,6 +172,7 @@
                 </span>
 
             </div>
+
 
             <div id="topicsContainer" class="topics-container">
 
@@ -117,6 +185,7 @@
         </section>
 
     </main>
+
 
     <footer class="footer">
 
@@ -134,6 +203,7 @@
                 </p>
 
             </div>
+
 
             <div class="footer-column">
 
@@ -155,6 +225,7 @@
 
             </div>
 
+
             <div class="footer-column">
 
                 <h4>
@@ -170,6 +241,7 @@
                 </a>
 
             </div>
+
 
             <div class="footer-column">
 
@@ -188,12 +260,11 @@
                 <a href="mailto:aniketbej852@gmail.com">
                     Contact
                 </a>
-        
+
             </div>
 
         </div>
 
-        </div>
 
         <div class="footer-bottom">
 
@@ -205,6 +276,7 @@
         </div>
 
     </footer>
+
 
     <script src="js/topic.js"></script>
 

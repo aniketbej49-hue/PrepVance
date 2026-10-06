@@ -1,23 +1,135 @@
 console.log("PrepVance DASHBOARD JS LOADED");
 
 const userId = localStorage.getItem("userId");
+const userEmail = localStorage.getItem("userEmail");
+
+const sidebar =
+    document.getElementById("sidebar");
+
+const sidebarTrigger =
+    document.getElementById("sidebarTrigger");
+
+const sidebarUserEmail =
+    document.getElementById("sidebarUserEmail");
+
+let sidebarTimer;
+
+function openSidebar() {
+
+    document.body.classList.remove(
+        "sidebar-collapsed"
+    );
+
+}
+
+function closeSidebar() {
+
+    document.body.classList.add(
+        "sidebar-collapsed"
+    );
+
+}
+
+if (sidebarUserEmail) {
+
+    if (userEmail) {
+
+        sidebarUserEmail.textContent =
+            userEmail;
+
+    } else {
+
+        sidebarUserEmail.textContent =
+            "User";
+
+    }
+
+}
+
+if (sidebar) {
+
+    sidebar.addEventListener(
+        "mouseenter",
+        function () {
+
+            clearTimeout(sidebarTimer);
+
+            openSidebar();
+
+        }
+    );
+
+    sidebar.addEventListener(
+        "mouseleave",
+        function () {
+
+            sidebarTimer = setTimeout(
+                function () {
+
+                    closeSidebar();
+
+                },
+                180
+            );
+
+        }
+    );
+
+}
+
+if (sidebarTrigger) {
+
+    sidebarTrigger.addEventListener(
+        "mouseenter",
+        function () {
+
+            clearTimeout(sidebarTimer);
+
+            openSidebar();
+
+        }
+    );
+
+}
+
+document.addEventListener(
+    "mousemove",
+    function (event) {
+
+        if (event.clientX <= 18) {
+
+            clearTimeout(sidebarTimer);
+
+            openSidebar();
+
+        }
+
+    }
+);
 
 async function loadDashboard() {
 
     if (!userId) {
+
         console.log("User ID not found");
+
         return;
+
     }
 
     try {
 
         const totalResponse =
-            await fetch("http://localhost:8080/dashboard/total-topics");
+            await fetch(
+                "http://localhost:8080/dashboard/total-topics"
+            );
 
         const totalTopics =
             await totalResponse.json();
 
-        document.getElementById("totalTopics").innerText =
+        document.getElementById(
+            "totalTopics"
+        ).innerText =
             totalTopics;
 
         const completedResponse =
@@ -28,7 +140,9 @@ async function loadDashboard() {
         const completedTopics =
             await completedResponse.json();
 
-        document.getElementById("completedTopics").innerText =
+        document.getElementById(
+            "completedTopics"
+        ).innerText =
             completedTopics;
 
         const pendingResponse =
@@ -39,7 +153,9 @@ async function loadDashboard() {
         const pendingTopics =
             await pendingResponse.json();
 
-        document.getElementById("pendingTopics").innerText =
+        document.getElementById(
+            "pendingTopics"
+        ).innerText =
             pendingTopics;
 
         const progressResponse =
@@ -50,13 +166,19 @@ async function loadDashboard() {
         const progress =
             await progressResponse.json();
 
-        document.getElementById("progressPercentage").innerText =
+        document.getElementById(
+            "progressPercentage"
+        ).innerText =
             progress + "%";
 
-        document.getElementById("progressText").innerText =
+        document.getElementById(
+            "progressText"
+        ).innerText =
             progress + "%";
 
-        document.getElementById("progressBar").style.width =
+        document.getElementById(
+            "progressBar"
+        ).style.width =
             progress + "%";
 
     } catch (error) {
@@ -74,181 +196,220 @@ const logoutBtn =
 
 if (logoutBtn) {
 
-    logoutBtn.addEventListener("click", function () {
+    logoutBtn.addEventListener(
+        "click",
+        function () {
 
-        localStorage.removeItem("userId");
-        localStorage.removeItem("userEmail");
+            localStorage.removeItem(
+                "userId"
+            );
 
-    });
+            localStorage.removeItem(
+                "userEmail"
+            );
+
+        }
+    );
 
 }
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
 
-    const openAnalyzerBtn =
-        document.getElementById("openAnalyzerBtn");
+        const openAnalyzerBtn =
+            document.getElementById(
+                "openAnalyzerBtn"
+            );
 
-    const closeAnalyzerBtn =
-        document.getElementById("closeAnalyzerBtn");
+        const closeAnalyzerBtn =
+            document.getElementById(
+                "closeAnalyzerBtn"
+            );
 
-    const resumeAnalyzer =
-        document.getElementById("resumeAnalyzer");
+        const resumeAnalyzer =
+            document.getElementById(
+                "resumeAnalyzer"
+            );
 
-    const resumeFile =
-        document.getElementById("resumeFile");
+        const resumeFile =
+            document.getElementById(
+                "resumeFile"
+            );
 
-    const analyzeBtn =
-        document.getElementById("analyzeBtn");
+        const analyzeBtn =
+            document.getElementById(
+                "analyzeBtn"
+            );
 
-    const analysisResult =
-        document.getElementById("analysisResult");
+        if (openAnalyzerBtn) {
 
-    if (openAnalyzerBtn) {
+            openAnalyzerBtn.addEventListener(
+                "click",
+                function () {
 
-        openAnalyzerBtn.addEventListener(
-            "click",
-            function () {
-
-                resumeAnalyzer.classList.add("active");
-
-            }
-        );
-
-    }
-
-    if (closeAnalyzerBtn) {
-
-        closeAnalyzerBtn.addEventListener(
-            "click",
-            function () {
-
-                resumeAnalyzer.classList.remove("active");
-
-            }
-        );
-
-    }
-
-    if (analyzeBtn) {
-
-        analyzeBtn.addEventListener(
-            "click",
-            async function () {
-
-                if (!resumeFile.files.length) {
-
-                    alert("Please choose a resume PDF.");
-
-                    return;
+                    resumeAnalyzer.classList.add(
+                        "active"
+                    );
 
                 }
+            );
 
-                const file =
-                    resumeFile.files[0];
+        }
 
-                if (
-                    file.type !== "application/pdf" &&
-                    !file.name.toLowerCase().endsWith(".pdf")
-                ) {
+        if (closeAnalyzerBtn) {
 
-                    alert("Please upload a PDF file.");
+            closeAnalyzerBtn.addEventListener(
+                "click",
+                function () {
 
-                    return;
-
-                }
-
-                const userEmail =
-                    localStorage.getItem("userEmail");
-
-                if (!userEmail) {
-
-                    alert("User email not found. Please login again.");
-
-                    return;
+                    resumeAnalyzer.classList.remove(
+                        "active"
+                    );
 
                 }
+            );
 
-                const formData =
-                    new FormData();
+        }
 
-                formData.append(
-                    "file",
-                    file
-                );
+        if (analyzeBtn) {
 
-                formData.append(
-                    "email",
-                    userEmail
-                );
+            analyzeBtn.addEventListener(
+                "click",
+                async function () {
 
-                analyzeBtn.disabled = true;
+                    if (!resumeFile.files.length) {
 
-                analyzeBtn.innerText =
-                    "Analyzing Resume...";
-
-                try {
-
-                    const response =
-                        await fetch(
-                            "http://localhost:8080/resume/upload",
-                            {
-                                method: "POST",
-                                body: formData
-                            }
+                        alert(
+                            "Please choose a resume PDF."
                         );
 
-                    if (!response.ok) {
-
-                        throw new Error(
-                            "Resume analysis failed. Server returned " +
-                            response.status
-                        );
+                        return;
 
                     }
 
-                    const data =
-                        await response.json();
+                    const file =
+                        resumeFile.files[0];
 
-                    console.log(
-                        "Resume Analysis Result:",
-                        data
+                    if (
+                        file.type !== "application/pdf" &&
+                        !file.name
+                            .toLowerCase()
+                            .endsWith(".pdf")
+                    ) {
+
+                        alert(
+                            "Please upload a PDF file."
+                        );
+
+                        return;
+
+                    }
+
+                    const currentUserEmail =
+                        localStorage.getItem(
+                            "userEmail"
+                        );
+
+                    if (!currentUserEmail) {
+
+                        alert(
+                            "User email not found. Please login again."
+                        );
+
+                        return;
+
+                    }
+
+                    const formData =
+                        new FormData();
+
+                    formData.append(
+                        "file",
+                        file
                     );
 
-                    displayResumeAnalysis(data);
-
-                } catch (error) {
-
-                    console.error(
-                        "Resume Analyzer Error:",
-                        error
+                    formData.append(
+                        "email",
+                        currentUserEmail
                     );
 
-                    alert(
-                        "Something went wrong while analyzing the resume."
-                    );
-
-                } finally {
-
-                    analyzeBtn.disabled = false;
+                    analyzeBtn.disabled =
+                        true;
 
                     analyzeBtn.innerText =
-                        "Analyze Resume";
+                        "Analyzing Resume...";
+
+                    try {
+
+                        const response =
+                            await fetch(
+                                "http://localhost:8080/resume/upload",
+                                {
+                                    method: "POST",
+                                    body: formData
+                                }
+                            );
+
+                        if (!response.ok) {
+
+                            throw new Error(
+                                "Resume analysis failed. Server returned " +
+                                response.status
+                            );
+
+                        }
+
+                        const data =
+                            await response.json();
+
+                        console.log(
+                            "Resume Analysis Result:",
+                            data
+                        );
+
+                        displayResumeAnalysis(
+                            data
+                        );
+
+                    } catch (error) {
+
+                        console.error(
+                            "Resume Analyzer Error:",
+                            error
+                        );
+
+                        alert(
+                            "Something went wrong while analyzing the resume."
+                        );
+
+                    } finally {
+
+                        analyzeBtn.disabled =
+                            false;
+
+                        analyzeBtn.innerText =
+                            "Analyze Resume";
+
+                    }
 
                 }
+            );
 
-            }
-        );
+        }
 
     }
-
-});
+);
 
 function displayResumeAnalysis(data) {
 
     const analysisResult =
-        document.getElementById("analysisResult");
+        document.getElementById(
+            "analysisResult"
+        );
 
-    analysisResult.style.display = "block";
+    analysisResult.style.display =
+        "block";
 
     if (data.atsScore) {
 
@@ -301,130 +462,13 @@ function displayResumeAnalysis(data) {
             data.candidateProfile.experienceLevel
         );
 
-        setText(
-            "targetRole",
-            data.candidateProfile.targetRole
-        );
-
-        setText(
-            "candidateDomain",
-            data.candidateProfile.domain
-        );
-
-        setText(
-            "professionalSummary",
-            data.candidateProfile.professionalSummary
-        );
-
     }
-
-    if (data.skills) {
-
-        fillList(
-            "technicalSkillsList",
-            data.skills.technicalSkills
-        );
-
-        fillList(
-            "softSkillsList",
-            data.skills.softSkills
-        );
-
-        fillList(
-            "domainSkillsList",
-            data.skills.domainSkills
-        );
-
-        fillList(
-            "toolsList",
-            data.skills.toolsAndTechnologies
-        );
-
-    }
-
-    if (data.experience) {
-
-        displayExperience(
-            data.experience.entries
-        );
-
-    }
-
-    if (data.education) {
-
-        displayEducation(
-            data.education.entries
-        );
-
-    }
-
-    if (data.projects) {
-
-        displayProjects(
-            data.projects.entries
-        );
-
-    }
-
-    fillList(
-        "certificationsList",
-        data.certifications
-    );
 
     if (data.feedback) {
 
         fillList(
-            "strengthsList",
-            data.feedback.strengths
-        );
-
-        fillList(
-            "weaknessesList",
-            data.feedback.weaknesses
-        );
-
-        fillList(
             "recommendationsList",
             data.feedback.recommendations
-        );
-
-        fillList(
-            "atsImprovementsList",
-            data.feedback.atsImprovements
-        );
-
-    }
-
-    if (data.jobMatch) {
-
-        setText(
-            "jobMatchScore",
-            data.jobMatch.matchScore + " / 100"
-        );
-
-        fillList(
-            "matchedSkillsList",
-            data.jobMatch.matchedSkills
-        );
-
-        fillList(
-            "missingSkillsList",
-            data.jobMatch.missingSkills
-        );
-
-        fillList(
-            "matchedKeywordsList",
-            data.jobMatch.matchedKeywords
-        );
-
-        fillList(
-            "missingKeywordsList",
-            data.jobMatch.missingKeywords
-        );
-
-        fillList(
-            "jobMatchRecommendationsList",
-            data.jobMatch.recommendations
         );
 
     }
@@ -434,10 +478,14 @@ function displayResumeAnalysis(data) {
 function setText(elementId, value) {
 
     const element =
-        document.getElementById(elementId);
+        document.getElementById(
+            elementId
+        );
 
     if (!element) {
+
         return;
+
     }
 
     if (
@@ -446,11 +494,13 @@ function setText(elementId, value) {
         value === ""
     ) {
 
-        element.textContent = "--";
+        element.textContent =
+            "--";
 
     } else {
 
-        element.textContent = value;
+        element.textContent =
+            value;
 
     }
 
@@ -459,10 +509,14 @@ function setText(elementId, value) {
 function fillList(elementId, items) {
 
     const list =
-        document.getElementById(elementId);
+        document.getElementById(
+            elementId
+        );
 
     if (!list) {
+
         return;
+
     }
 
     list.innerHTML = "";
@@ -474,7 +528,9 @@ function fillList(elementId, items) {
     ) {
 
         const li =
-            document.createElement("li");
+            document.createElement(
+                "li"
+            );
 
         li.textContent =
             "No information found.";
@@ -485,26 +541,35 @@ function fillList(elementId, items) {
 
     }
 
-    items.forEach(function (item) {
+    items.forEach(
+        function (item) {
 
-        const li =
-            document.createElement("li");
+            const li =
+                document.createElement(
+                    "li"
+                );
 
-        li.textContent = item;
+            li.textContent =
+                item;
 
-        list.appendChild(li);
+            list.appendChild(li);
 
-    });
+        }
+    );
 
 }
 
 function displayExperience(entries) {
 
     const container =
-        document.getElementById("experienceList");
+        document.getElementById(
+            "experienceList"
+        );
 
     if (!container) {
+
         return;
+
     }
 
     container.innerHTML = "";
@@ -516,7 +581,9 @@ function displayExperience(entries) {
     ) {
 
         const p =
-            document.createElement("p");
+            document.createElement(
+                "p"
+            );
 
         p.textContent =
             "No professional experience found.";
@@ -527,119 +594,147 @@ function displayExperience(entries) {
 
     }
 
-    entries.forEach(function (experience) {
+    entries.forEach(
+        function (experience) {
 
-        const div =
-            document.createElement("div");
+            const div =
+                document.createElement(
+                    "div"
+                );
 
-        div.className =
-            "experience-entry";
+            div.className =
+                "experience-entry";
 
-        const title =
-            document.createElement("h4");
+            const title =
+                document.createElement(
+                    "h4"
+                );
 
-        title.textContent =
-            experience.jobTitle || "Job Title";
+            title.textContent =
+                experience.jobTitle ||
+                "Job Title";
 
-        const company =
-            document.createElement("p");
+            const company =
+                document.createElement(
+                    "p"
+                );
 
-        company.textContent =
-            experience.company || "Company";
+            company.textContent =
+                experience.company ||
+                "Company";
 
-        const dates =
-            document.createElement("p");
+            const dates =
+                document.createElement(
+                    "p"
+                );
 
-        dates.textContent =
-            `${experience.startDate || "--"} - ${experience.endDate || "--"}`;
+            dates.textContent =
+                `${experience.startDate || "--"} - ${experience.endDate || "--"}`;
 
-        div.appendChild(title);
+            div.appendChild(title);
 
-        div.appendChild(company);
+            div.appendChild(company);
 
-        div.appendChild(dates);
+            div.appendChild(dates);
 
-        if (
-            experience.responsibilities &&
-            experience.responsibilities.length > 0
-        ) {
+            if (
+                experience.responsibilities &&
+                experience.responsibilities.length > 0
+            ) {
 
-            const heading =
-                document.createElement("strong");
+                const heading =
+                    document.createElement(
+                        "strong"
+                    );
 
-            heading.textContent =
-                "Responsibilities:";
+                heading.textContent =
+                    "Responsibilities:";
 
-            div.appendChild(heading);
+                div.appendChild(heading);
 
-            const list =
-                document.createElement("ul");
+                const list =
+                    document.createElement(
+                        "ul"
+                    );
 
-            experience.responsibilities.forEach(
-                function (responsibility) {
+                experience.responsibilities.forEach(
+                    function (responsibility) {
 
-                    const li =
-                        document.createElement("li");
+                        const li =
+                            document.createElement(
+                                "li"
+                            );
 
-                    li.textContent =
-                        responsibility;
+                        li.textContent =
+                            responsibility;
 
-                    list.appendChild(li);
+                        list.appendChild(li);
 
-                }
-            );
+                    }
+                );
 
-            div.appendChild(list);
+                div.appendChild(list);
+
+            }
+
+            if (
+                experience.achievements &&
+                experience.achievements.length > 0
+            ) {
+
+                const heading =
+                    document.createElement(
+                        "strong"
+                    );
+
+                heading.textContent =
+                    "Achievements:";
+
+                div.appendChild(heading);
+
+                const list =
+                    document.createElement(
+                        "ul"
+                    );
+
+                experience.achievements.forEach(
+                    function (achievement) {
+
+                        const li =
+                            document.createElement(
+                                "li"
+                            );
+
+                        li.textContent =
+                            achievement;
+
+                        list.appendChild(li);
+
+                    }
+                );
+
+                div.appendChild(list);
+
+            }
+
+            container.appendChild(div);
 
         }
-
-        if (
-            experience.achievements &&
-            experience.achievements.length > 0
-        ) {
-
-            const heading =
-                document.createElement("strong");
-
-            heading.textContent =
-                "Achievements:";
-
-            div.appendChild(heading);
-
-            const list =
-                document.createElement("ul");
-
-            experience.achievements.forEach(
-                function (achievement) {
-
-                    const li =
-                        document.createElement("li");
-
-                    li.textContent =
-                        achievement;
-
-                    list.appendChild(li);
-
-                }
-            );
-
-            div.appendChild(list);
-
-        }
-
-        container.appendChild(div);
-
-    });
+    );
 
 }
 
 function displayEducation(entries) {
 
     const container =
-        document.getElementById("educationList");
+        document.getElementById(
+            "educationList"
+        );
 
     if (!container) {
+
         return;
+
     }
 
     container.innerHTML = "";
@@ -651,7 +746,9 @@ function displayEducation(entries) {
     ) {
 
         const p =
-            document.createElement("p");
+            document.createElement(
+                "p"
+            );
 
         p.textContent =
             "No education information found.";
@@ -662,73 +759,97 @@ function displayEducation(entries) {
 
     }
 
-    entries.forEach(function (education) {
+    entries.forEach(
+        function (education) {
 
-        const div =
-            document.createElement("div");
+            const div =
+                document.createElement(
+                    "div"
+                );
 
-        div.className =
-            "education-entry";
+            div.className =
+                "education-entry";
 
-        const degree =
-            document.createElement("h4");
+            const degree =
+                document.createElement(
+                    "h4"
+                );
 
-        degree.textContent =
-            education.degree || "Degree";
+            degree.textContent =
+                education.degree ||
+                "Degree";
 
-        const field =
-            document.createElement("p");
+            const field =
+                document.createElement(
+                    "p"
+                );
 
-        field.textContent =
-            education.fieldOfStudy || "";
+            field.textContent =
+                education.fieldOfStudy ||
+                "";
 
-        const institution =
-            document.createElement("p");
+            const institution =
+                document.createElement(
+                    "p"
+                );
 
-        institution.textContent =
-            education.institution || "Institution";
+            institution.textContent =
+                education.institution ||
+                "Institution";
 
-        const dates =
-            document.createElement("p");
+            const dates =
+                document.createElement(
+                    "p"
+                );
 
-        dates.textContent =
-            `${education.startDate || "--"} - ${education.endDate || "--"}`;
+            dates.textContent =
+                `${education.startDate || "--"} - ${education.endDate || "--"}`;
 
-        div.appendChild(degree);
+            div.appendChild(degree);
 
-        if (education.fieldOfStudy) {
-            div.appendChild(field);
+            if (education.fieldOfStudy) {
+
+                div.appendChild(field);
+
+            }
+
+            div.appendChild(institution);
+
+            div.appendChild(dates);
+
+            if (education.grade) {
+
+                const grade =
+                    document.createElement(
+                        "p"
+                    );
+
+                grade.textContent =
+                    "Grade: " +
+                    education.grade;
+
+                div.appendChild(grade);
+
+            }
+
+            container.appendChild(div);
+
         }
-
-        div.appendChild(institution);
-
-        div.appendChild(dates);
-
-        if (education.grade) {
-
-            const grade =
-                document.createElement("p");
-
-            grade.textContent =
-                "Grade: " + education.grade;
-
-            div.appendChild(grade);
-
-        }
-
-        container.appendChild(div);
-
-    });
+    );
 
 }
 
 function displayProjects(entries) {
 
     const container =
-        document.getElementById("projectsList");
+        document.getElementById(
+            "projectsList"
+        );
 
     if (!container) {
+
         return;
+
     }
 
     container.innerHTML = "";
@@ -740,7 +861,9 @@ function displayProjects(entries) {
     ) {
 
         const p =
-            document.createElement("p");
+            document.createElement(
+                "p"
+            );
 
         p.textContent =
             "No projects found.";
@@ -751,110 +874,135 @@ function displayProjects(entries) {
 
     }
 
-    entries.forEach(function (project) {
+    entries.forEach(
+        function (project) {
 
-        const div =
-            document.createElement("div");
+            const div =
+                document.createElement(
+                    "div"
+                );
 
-        div.className =
-            "project-entry";
+            div.className =
+                "project-entry";
 
-        const title =
-            document.createElement("h4");
+            const title =
+                document.createElement(
+                    "h4"
+                );
 
-        title.textContent =
-            project.title || "Project";
+            title.textContent =
+                project.title ||
+                "Project";
 
-        const description =
-            document.createElement("p");
+            const description =
+                document.createElement(
+                    "p"
+                );
 
-        description.textContent =
-            project.description || "";
+            description.textContent =
+                project.description ||
+                "";
 
-        div.appendChild(title);
+            div.appendChild(title);
 
-        div.appendChild(description);
+            div.appendChild(description);
 
-        if (
-            project.technologies &&
-            project.technologies.length > 0
-        ) {
+            if (
+                project.technologies &&
+                project.technologies.length > 0
+            ) {
 
-            const tech =
-                document.createElement("p");
+                const tech =
+                    document.createElement(
+                        "p"
+                    );
 
-            tech.textContent =
-                "Technologies: " +
-                project.technologies.join(", ");
+                tech.textContent =
+                    "Technologies: " +
+                    project.technologies.join(
+                        ", "
+                    );
 
-            div.appendChild(tech);
+                div.appendChild(tech);
+
+            }
+
+            if (project.role) {
+
+                const role =
+                    document.createElement(
+                        "p"
+                    );
+
+                role.textContent =
+                    "Role: " +
+                    project.role;
+
+                div.appendChild(role);
+
+            }
+
+            if (
+                project.startDate ||
+                project.endDate
+            ) {
+
+                const dates =
+                    document.createElement(
+                        "p"
+                    );
+
+                dates.textContent =
+                    `${project.startDate || "--"} - ${project.endDate || "--"}`;
+
+                div.appendChild(dates);
+
+            }
+
+            if (
+                project.achievements &&
+                project.achievements.length > 0
+            ) {
+
+                const heading =
+                    document.createElement(
+                        "strong"
+                    );
+
+                heading.textContent =
+                    "Achievements:";
+
+                div.appendChild(heading);
+
+                const list =
+                    document.createElement(
+                        "ul"
+                    );
+
+                project.achievements.forEach(
+                    function (achievement) {
+
+                        const li =
+                            document.createElement(
+                                "li"
+                            );
+
+                        li.textContent =
+                            achievement;
+
+                        list.appendChild(li);
+
+                    }
+                );
+
+                div.appendChild(list);
+
+            }
+
+            container.appendChild(div);
 
         }
-
-        if (project.role) {
-
-            const role =
-                document.createElement("p");
-
-            role.textContent =
-                "Role: " + project.role;
-
-            div.appendChild(role);
-
-        }
-
-        if (
-            project.startDate ||
-            project.endDate
-        ) {
-
-            const dates =
-                document.createElement("p");
-
-            dates.textContent =
-                `${project.startDate || "--"} - ${project.endDate || "--"}`;
-
-            div.appendChild(dates);
-
-        }
-
-        if (
-            project.achievements &&
-            project.achievements.length > 0
-        ) {
-
-            const heading =
-                document.createElement("strong");
-
-            heading.textContent =
-                "Achievements:";
-
-            div.appendChild(heading);
-
-            const list =
-                document.createElement("ul");
-
-            project.achievements.forEach(
-                function (achievement) {
-
-                    const li =
-                        document.createElement("li");
-
-                    li.textContent =
-                        achievement;
-
-                    list.appendChild(li);
-
-                }
-            );
-
-            div.appendChild(list);
-
-        }
-
-        container.appendChild(div);
-
-    });
+    );
 
 }
 
